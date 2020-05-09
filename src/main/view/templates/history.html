@@ -61,9 +61,10 @@
     <div style="padding: 120px;height:100%">
         <blockquote class="layui-elem-quote layui-text">
 
-            商城列表没有你需要的商品：1. 填写你需要的商品类别 2.根据提示填写关于商品的描述</a>
+            该页面显示目前登陆用户相关商品线上支付交易记录 </a>
         </blockquote>
         <!-- 内容主体区域 -->
+        <table class="layui-hide" id="test"></table>
     </div>
     <div class="layui-footer">
         <!-- 底部固定区域 -->
@@ -76,6 +77,27 @@
     layui.use('element', function(){
         var element = layui.element;
 
+    });
+    layui.use('table', function(){
+        var table = layui.table;
+
+        table.render({
+            elem: '#test'
+            ,url:'/demo/table/user/'
+            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            ,cols: [
+                [
+                {field:'order_id', title: '订单id', sort: true}
+                ,{field:'id_name', title: '真名'} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                ,{field:'user_id', title: '用户id', sort: true}
+                ,{field:'all_cost', title: '下单金额'}
+                ,{field:'pay_time', title: '付款时间'}
+                ,{field:'receiver_phone', title: '买房联系方式', align: 'center'} //单元格内容水平居中
+                ,{field:'selluser_id', title: '卖方用户id', sort: true, align: 'right'} //单元格内容水平居中
+                ,{field:'sell_phone', title: '卖方联系方式', sort: true, align: 'right'}
+            ]
+            ]
+        });
     });
 </script>
 
