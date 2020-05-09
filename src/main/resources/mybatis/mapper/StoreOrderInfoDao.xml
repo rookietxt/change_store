@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.txt.change_store.dao.StoreOrderInfoDao">
+  <resultMap id="BaseResultMap" type="com.txt.change_store.pojo.Entity.StoreOrderInfo">
+    <id column="order_info_id" jdbcType="INTEGER" property="orderInfoId" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="origin_goods_id" jdbcType="INTEGER" property="originGoodsId" />
+    <result column="goods_price" jdbcType="DOUBLE" property="goodsPrice" />
+    <result column="goods_bougt_count" jdbcType="VARCHAR" property="goodsBougtCount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    order_info_id, order_id, origin_goods_id, goods_price, goods_bougt_count
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from store_order_info
+    where order_info_id = #{orderInfoId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from store_order_info
+    where order_info_id = #{orderInfoId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="order_info_id" keyProperty="orderInfoId" parameterType="com.txt.change_store.pojo.Entity.StoreOrderInfo" useGeneratedKeys="true">
+    insert into store_order_info (order_id, origin_goods_id, goods_price, 
+      goods_bougt_count)
+    values (#{orderId,jdbcType=VARCHAR}, #{originGoodsId,jdbcType=INTEGER}, #{goodsPrice,jdbcType=DOUBLE}, 
+      #{goodsBougtCount,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="order_info_id" keyProperty="orderInfoId" parameterType="com.txt.change_store.pojo.Entity.StoreOrderInfo" useGeneratedKeys="true">
+    insert into store_order_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="originGoodsId != null">
+        origin_goods_id,
+      </if>
+      <if test="goodsPrice != null">
+        goods_price,
+      </if>
+      <if test="goodsBougtCount != null">
+        goods_bougt_count,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="originGoodsId != null">
+        #{originGoodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPrice != null">
+        #{goodsPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsBougtCount != null">
+        #{goodsBougtCount,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.txt.change_store.pojo.Entity.StoreOrderInfo">
+    update store_order_info
+    <set>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="originGoodsId != null">
+        origin_goods_id = #{originGoodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPrice != null">
+        goods_price = #{goodsPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsBougtCount != null">
+        goods_bougt_count = #{goodsBougtCount,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where order_info_id = #{orderInfoId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.txt.change_store.pojo.Entity.StoreOrderInfo">
+    update store_order_info
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      origin_goods_id = #{originGoodsId,jdbcType=INTEGER},
+      goods_price = #{goodsPrice,jdbcType=DOUBLE},
+      goods_bougt_count = #{goodsBougtCount,jdbcType=VARCHAR}
+    where order_info_id = #{orderInfoId,jdbcType=INTEGER}
+  </update>
+</mapper>

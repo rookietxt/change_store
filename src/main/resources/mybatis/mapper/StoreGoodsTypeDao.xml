@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.txt.change_store.dao.StoreGoodsTypeDao">
+  <resultMap id="BaseResultMap" type="com.txt.change_store.pojo.Entity.StoreGoodsType">
+    <id column="goods_type_id" jdbcType="INTEGER" property="goodsTypeId" />
+    <result column="goods_parent_type" jdbcType="INTEGER" property="goodsParentType" />
+    <result column="goods_parent_name" jdbcType="VARCHAR" property="goodsParentName" />
+    <result column="goods_type_sort" jdbcType="INTEGER" property="goodsTypeSort" />
+    <result column="goods_type_icon" jdbcType="VARCHAR" property="goodsTypeIcon" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    goods_type_id, goods_parent_type, goods_parent_name, goods_type_sort, goods_type_icon
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from store_goods_type
+    where goods_type_id = #{goodsTypeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from store_goods_type
+    where goods_type_id = #{goodsTypeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="goods_type_id" keyProperty="goodsTypeId" parameterType="com.txt.change_store.pojo.Entity.StoreGoodsType" useGeneratedKeys="true">
+    insert into store_goods_type (goods_parent_type, goods_parent_name, 
+      goods_type_sort, goods_type_icon)
+    values (#{goodsParentType,jdbcType=INTEGER}, #{goodsParentName,jdbcType=VARCHAR}, 
+      #{goodsTypeSort,jdbcType=INTEGER}, #{goodsTypeIcon,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="goods_type_id" keyProperty="goodsTypeId" parameterType="com.txt.change_store.pojo.Entity.StoreGoodsType" useGeneratedKeys="true">
+    insert into store_goods_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goodsParentType != null">
+        goods_parent_type,
+      </if>
+      <if test="goodsParentName != null">
+        goods_parent_name,
+      </if>
+      <if test="goodsTypeSort != null">
+        goods_type_sort,
+      </if>
+      <if test="goodsTypeIcon != null">
+        goods_type_icon,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goodsParentType != null">
+        #{goodsParentType,jdbcType=INTEGER},
+      </if>
+      <if test="goodsParentName != null">
+        #{goodsParentName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsTypeSort != null">
+        #{goodsTypeSort,jdbcType=INTEGER},
+      </if>
+      <if test="goodsTypeIcon != null">
+        #{goodsTypeIcon,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.txt.change_store.pojo.Entity.StoreGoodsType">
+    update store_goods_type
+    <set>
+      <if test="goodsParentType != null">
+        goods_parent_type = #{goodsParentType,jdbcType=INTEGER},
+      </if>
+      <if test="goodsParentName != null">
+        goods_parent_name = #{goodsParentName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsTypeSort != null">
+        goods_type_sort = #{goodsTypeSort,jdbcType=INTEGER},
+      </if>
+      <if test="goodsTypeIcon != null">
+        goods_type_icon = #{goodsTypeIcon,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where goods_type_id = #{goodsTypeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.txt.change_store.pojo.Entity.StoreGoodsType">
+    update store_goods_type
+    set goods_parent_type = #{goodsParentType,jdbcType=INTEGER},
+      goods_parent_name = #{goodsParentName,jdbcType=VARCHAR},
+      goods_type_sort = #{goodsTypeSort,jdbcType=INTEGER},
+      goods_type_icon = #{goodsTypeIcon,jdbcType=VARCHAR}
+    where goods_type_id = #{goodsTypeId,jdbcType=INTEGER}
+  </update>
+</mapper>

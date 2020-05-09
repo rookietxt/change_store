@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.txt.change_store.dao.StoreTrolleyDao">
+  <resultMap id="BaseResultMap" type="com.txt.change_store.pojo.Entity.StoreTrolley">
+    <id column="trolley_id" jdbcType="INTEGER" property="trolleyId" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="goods_bougt_count" jdbcType="INTEGER" property="goodsBougtCount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    trolley_id, user_id, goods_id, goods_bougt_count
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from store_trolley
+    where trolley_id = #{trolleyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from store_trolley
+    where trolley_id = #{trolleyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="trolley_id" keyProperty="trolleyId" parameterType="com.txt.change_store.pojo.Entity.StoreTrolley" useGeneratedKeys="true">
+    insert into store_trolley (user_id, goods_id, goods_bougt_count
+      )
+    values (#{userId,jdbcType=VARCHAR}, #{goodsId,jdbcType=INTEGER}, #{goodsBougtCount,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="trolley_id" keyProperty="trolleyId" parameterType="com.txt.change_store.pojo.Entity.StoreTrolley" useGeneratedKeys="true">
+    insert into store_trolley
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="goodsBougtCount != null">
+        goods_bougt_count,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsBougtCount != null">
+        #{goodsBougtCount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.txt.change_store.pojo.Entity.StoreTrolley">
+    update store_trolley
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsBougtCount != null">
+        goods_bougt_count = #{goodsBougtCount,jdbcType=INTEGER},
+      </if>
+    </set>
+    where trolley_id = #{trolleyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.txt.change_store.pojo.Entity.StoreTrolley">
+    update store_trolley
+    set user_id = #{userId,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      goods_bougt_count = #{goodsBougtCount,jdbcType=INTEGER}
+    where trolley_id = #{trolleyId,jdbcType=INTEGER}
+  </update>
+</mapper>

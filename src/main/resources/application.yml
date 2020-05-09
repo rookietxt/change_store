@@ -1,0 +1,14 @@
+server:
+  port: 8080 #当前应用运行的端口
+
+spring:
+  datasource: #数据源配置
+    type: com.alibaba.druid.pool.DruidDataSource #数据池的类型
+    password: 123456
+    username: root
+    driver-class-name: com.mysql.cj.jdbc.Driver #数据库的驱动程序类
+    url: jdbc:mysql://localhost:3306/store_db?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true #数据库表中的下划线自动转换成驼峰
+  mapper-locations: classpath:mybatis/mapper/**/*.xml #mapper文件的路径，这个路径下面的mapper.xml会自动加载成mybatis映射文件

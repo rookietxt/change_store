@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.txt.change_store.dao.StoreGoodsDao">
+  <resultMap id="BaseResultMap" type="com.txt.change_store.pojo.Entity.StoreGoods">
+    <id column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="goods_type_id" jdbcType="INTEGER" property="goodsTypeId" />
+    <result column="goods_title" jdbcType="VARCHAR" property="goodsTitle" />
+    <result column="goods_img" jdbcType="VARCHAR" property="goodsImg" />
+    <result column="goods_old_price" jdbcType="DOUBLE" property="goodsOldPrice" />
+    <result column="goods_price" jdbcType="DOUBLE" property="goodsPrice" />
+    <result column="goods_content" jdbcType="INTEGER" property="goodsContent" />
+    <result column="goods_counts" jdbcType="INTEGER" property="goodsCounts" />
+    <result column="goods_onsale_flag" jdbcType="INTEGER" property="goodsOnsaleFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    goods_id, goods_type_id, goods_title, goods_img, goods_old_price, goods_price, goods_content, 
+    goods_counts, goods_onsale_flag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from store_goods
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from store_goods
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="goods_id" keyProperty="goodsId" parameterType="com.txt.change_store.pojo.Entity.StoreGoods" useGeneratedKeys="true">
+    insert into store_goods (goods_type_id, goods_title, goods_img, 
+      goods_old_price, goods_price, goods_content, 
+      goods_counts, goods_onsale_flag)
+    values (#{goodsTypeId,jdbcType=INTEGER}, #{goodsTitle,jdbcType=VARCHAR}, #{goodsImg,jdbcType=VARCHAR}, 
+      #{goodsOldPrice,jdbcType=DOUBLE}, #{goodsPrice,jdbcType=DOUBLE}, #{goodsContent,jdbcType=INTEGER}, 
+      #{goodsCounts,jdbcType=INTEGER}, #{goodsOnsaleFlag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="goods_id" keyProperty="goodsId" parameterType="com.txt.change_store.pojo.Entity.StoreGoods" useGeneratedKeys="true">
+    insert into store_goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goodsTypeId != null">
+        goods_type_id,
+      </if>
+      <if test="goodsTitle != null">
+        goods_title,
+      </if>
+      <if test="goodsImg != null">
+        goods_img,
+      </if>
+      <if test="goodsOldPrice != null">
+        goods_old_price,
+      </if>
+      <if test="goodsPrice != null">
+        goods_price,
+      </if>
+      <if test="goodsContent != null">
+        goods_content,
+      </if>
+      <if test="goodsCounts != null">
+        goods_counts,
+      </if>
+      <if test="goodsOnsaleFlag != null">
+        goods_onsale_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goodsTypeId != null">
+        #{goodsTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsTitle != null">
+        #{goodsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsImg != null">
+        #{goodsImg,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsOldPrice != null">
+        #{goodsOldPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsPrice != null">
+        #{goodsPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsContent != null">
+        #{goodsContent,jdbcType=INTEGER},
+      </if>
+      <if test="goodsCounts != null">
+        #{goodsCounts,jdbcType=INTEGER},
+      </if>
+      <if test="goodsOnsaleFlag != null">
+        #{goodsOnsaleFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.txt.change_store.pojo.Entity.StoreGoods">
+    update store_goods
+    <set>
+      <if test="goodsTypeId != null">
+        goods_type_id = #{goodsTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsTitle != null">
+        goods_title = #{goodsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsImg != null">
+        goods_img = #{goodsImg,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsOldPrice != null">
+        goods_old_price = #{goodsOldPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsPrice != null">
+        goods_price = #{goodsPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsContent != null">
+        goods_content = #{goodsContent,jdbcType=INTEGER},
+      </if>
+      <if test="goodsCounts != null">
+        goods_counts = #{goodsCounts,jdbcType=INTEGER},
+      </if>
+      <if test="goodsOnsaleFlag != null">
+        goods_onsale_flag = #{goodsOnsaleFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.txt.change_store.pojo.Entity.StoreGoods">
+    update store_goods
+    set goods_type_id = #{goodsTypeId,jdbcType=INTEGER},
+      goods_title = #{goodsTitle,jdbcType=VARCHAR},
+      goods_img = #{goodsImg,jdbcType=VARCHAR},
+      goods_old_price = #{goodsOldPrice,jdbcType=DOUBLE},
+      goods_price = #{goodsPrice,jdbcType=DOUBLE},
+      goods_content = #{goodsContent,jdbcType=INTEGER},
+      goods_counts = #{goodsCounts,jdbcType=INTEGER},
+      goods_onsale_flag = #{goodsOnsaleFlag,jdbcType=INTEGER}
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </update>
+</mapper>

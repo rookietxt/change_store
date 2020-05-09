@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.txt.change_store.dao.StoreUserDao">
+  <resultMap id="BaseResultMap" type="com.txt.change_store.pojo.Entity.StoreUser">
+    <id column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
+    <result column="id_name" jdbcType="VARCHAR" property="idName" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="mobile_phone" jdbcType="VARCHAR" property="mobilePhone" />
+    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+    <result column="last_login_ip" jdbcType="VARCHAR" property="lastLoginIp" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, user_password, id_name, nick_name, mobile_phone, last_login_time, last_login_ip
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+      select  <include refid="Base_Column_List" />from store_user where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectBymobilePhone" resultType="com.txt.change_store.pojo.Entity.StoreUser">
+    select <include refid="Base_Column_List"/>from store_user where mobile_phone = #{mobilePhone}
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from store_user
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="user_id" keyProperty="userId" parameterType="com.txt.change_store.pojo.Entity.StoreUser" useGeneratedKeys="true">
+    insert into store_user (user_password, id_name, nick_name, 
+      mobile_phone, last_login_time, last_login_ip
+      )
+    values (#{userPassword,jdbcType=VARCHAR}, #{idName,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
+      #{mobilePhone,jdbcType=VARCHAR}, #{lastLoginTime,jdbcType=TIMESTAMP}, #{lastLoginIp,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="user_id" keyProperty="userId" parameterType="com.txt.change_store.pojo.Entity.StoreUser" useGeneratedKeys="true">
+    insert into store_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userPassword != null">
+        user_password,
+      </if>
+      <if test="idName != null">
+        id_name,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="mobilePhone != null">
+        mobile_phone,
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time,
+      </if>
+      <if test="lastLoginIp != null">
+        last_login_ip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userPassword != null">
+        #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="idName != null">
+        #{idName,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhone != null">
+        #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null">
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginIp != null">
+        #{lastLoginIp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.txt.change_store.pojo.Entity.StoreUser">
+    update store_user
+    <set>
+      <if test="userPassword != null">
+        user_password = #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="idName != null">
+        id_name = #{idName,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhone != null">
+        mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginIp != null">
+        last_login_ip = #{lastLoginIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.txt.change_store.pojo.Entity.StoreUser">
+    update store_user
+    set user_password = #{userPassword,jdbcType=VARCHAR},
+      id_name = #{idName,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
+      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      last_login_ip = #{lastLoginIp,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+</mapper>

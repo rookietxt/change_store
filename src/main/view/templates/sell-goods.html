@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>商城</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">二手交易平台系统</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+
+                </a>
+                <dl class="layui-nav-child">
+                    <dd ><a href="personal.html">个人资料</a></dd>
+                    <dd ><a href="http://localhost:8080/pages/front/loginPage">退出登陆</a></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">商品列表</a>
+                    <dl class="layui-nav-child">
+                        <dd data-name="button">
+                            <a href="http://localhost:8080/index2" target="_blank">商品列表</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:;">信息发布</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="http://localhost:8080/sell-goods">商品出售</a></dd>
+                        <dd><a href="http://localhost:8080/allow-goods">求购商品</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:;">结算中心</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="http://localhost:8080/trolley">购物车</a></dd>
+                        <dd><a href="http://localhost:8080/history">成交记录</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="layui-body">
+    <!-- 内容主体区域 -->
+    <div style="padding: 120px;height:100%">
+        <blockquote class="layui-elem-quote layui-text">
+
+            出售二手商品：1. 填写你即将出售的商品类别 2.根据提示填写关于商品的描述</a>
+        </blockquote>
+        <br><br><br>
+        <div style="display: flex">
+            <div>
+                <div>
+                    <form class="layui-form" id="goodForm" action="">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">商品类型</label>
+                            <div class="layui-input-block" style="width: 200px">
+                                <select name="goodsTypeId" id="goodsTypeId" lay-filter="goodsTypeId">
+                                    <option value="">直接选择或搜索选择</option>
+                                    <option value="1">layer</option>
+                                    <option value="2">form</option>
+                                    <option value="3">layim</option>
+                                    <option value="4">element</option>
+                                    <option value="5">laytpl</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div>
+                                <label class="layui-form-label">商品标题</label>
+                                <div class="layui-input-inline" style="width: 200px">
+                                    <input type="text" name="title" class="layui-input" lay-verify="required">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div>
+                                <label class="layui-form-label">商品原价</label>
+                                <div class="layui-input-inline" style="width: 200px">
+                                    <input type="text" name="oldPrice" class="layui-input" lay-verify="required|number">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div>
+                                <label class="layui-form-label">商品现价</label>
+                                <div class="layui-input-inline" style="width: 200px">
+                                    <input type="text" name="price" class="layui-input" lay-verify="required|number">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">是否在售</label>
+                            <div class="layui-input-block">
+                                <input type="checkbox" checked="" name="onSale" lay-skin="switch" lay-filter="switchTest"
+                                       lay-text="在售|已下架">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div>
+                                <label class="layui-form-label">商品库存</label>
+                                <div class="layui-input-inline" style="width: 200px">
+                                    <input type="text" name="count" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div>
+                                <label class="layui-form-label">发布人昵称</label>
+                                <div class="layui-input-inline" style="width: 200px">
+                                    <input type="text" name="merchantName" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div>
+                                <label class="layui-form-label">联系电话</label>
+                                <div class="layui-input-inline" style="width: 200px">
+                                    <input type="text" name="evaluationCount" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div>
+                                <label class="layui-form-label">商品图片</label>
+                                <div class="layui-input-inline uploadHeadImage">
+                                    <div class="layui-upload-drag" id="headImg">
+                                        <i class="layui-icon"></i>
+                                        <p>点击上传图片，或将图片拖拽到此处</p>
+                                    </div>
+                                </div>
+                                <div class="layui-input-inline">
+                                    <div class="layui-upload-list">
+                                        <img class="layui-upload-img headImage" src="http://t.cn/RCzsdCq" id="demo1">
+                                        <p id="demoText"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button type="button" id="commit" class="layui-btn" lay-submit lay-filter="goodForm">确定添加
+                                </button>
+                            </div>
+                        </div>
+                        <input type="hidden" name="detail" id="detail"/>
+                    </form>
+                </div>
+            </div>
+            <div style="flex-grow: 1">
+                <h3 style="text-align: center">商品详情</h3>
+                <div id="wangEdit" style="width: 100%;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="layui-footer">
+    <!-- 底部固定区域 -->
+</div>
+<script src="/layui/layui.js"></script>
+<script src="lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+ <script th:inline="javascript" type="text/javascript">
+    //JavaScript代码区域
+    layui.use('element', function(){
+        var element = layui.element;
+
+    });
+
+    layui.use('form', function() {
+        var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
+
+        //……
+
+        //但是，如果你的HTML是动态生成的，自动渲染就会失效
+        //因此你需要在相应的地方，执行下述方法来手动渲染，跟这类似的还有 element.init();
+        form.render();
+    });
+    layui.use(["jquery", "upload", "form", "layer", "element"], function () {
+        var $ = layui.$,
+            element = layui.element,
+            layer = layui.layer,
+            upload = layui.upload,
+            form = layui.form;
+        //拖拽上传
+        var uploadInst = upload.render({
+            elem: '#headImg'
+            , url: '/upload/headImg'
+            , size: 500
+            , before: function (obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    $('#demo1').attr('src', result); //图片链接（base64）
+                });
+            }
+            , done: function (res) {
+                //如果上传失败
+                if (res.code > 0) {
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+                //打印后台传回的地址: 把地址放入一个隐藏的input中, 和表单一起提交到后台, 此处略..
+                /*   console.log(res.data.src);*/
+                window.parent.uploadHeadImage(res.data.src);
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #8f8f8f;">上传成功!!!</span>');
+            }
+            , error: function () {
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function () {
+                    uploadInst.upload();
+                });
+            }
+        });
+        element.init();
+    });
+</script>
+
+</body>
+</html>

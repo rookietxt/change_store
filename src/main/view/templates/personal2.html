@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>商城</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <script src="/layui/layui.js"></script>
+    <style type="text/css">
+        #ce {
+            margin: 0px 0px 0px 400px;
+        }
+    </style>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">二手交易平台系统</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+
+                </a>
+                <dl class="layui-nav-child"><dd >
+                    <a href="http://localhost:8080/personal">个人资料</a></dd>
+                    <dd ><a href="http://localhost:8080/pages/front/loginPage">退出登陆</a></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">商品列表</a>
+                    <dl class="layui-nav-child">
+                        <dd data-name="button">
+                            <a href="http://localhost:8080/index2" target="_blank">商品列表</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:;">信息发布</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="http://localhost:8080/sell-goods">商品出售</a></dd>
+                        <dd><a href="http://localhost:8080/allow-goods">求购商品</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:;">结算中心</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="http://localhost:8080/trolley">购物车</a></dd>
+                        <dd><a href="http://localhost:8080/history">成交记录</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="layui-body">
+    <!-- 内容主体区域 -->
+
+    <div style="padding: 120px;height:100%">
+        <div id="ce" style="display: flex">
+            <form class="layui-form" >
+                <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+                <div class="layui-form-item" style="text-align: left" >
+                    <label class="layui-form-label">站内昵称</label>
+                    <div class="layui-input-block" style="width: 400px;">
+                        <input type="text" name="" placeholder="请输入" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">真实姓名</label>
+                    <div class="layui-input-block" style="width: 400px;">
+                        <input type="text" name="" placeholder="请输入" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">用户ID</label>
+                    <div class="layui-input-block" style="width: 400px;">
+                        <input type="text"  readonly unselectable='on' name="" placeholder="cqnu00001" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">移动电话</label>
+                    <div class="layui-input-block" style="width: 400px;">
+                        <input type="text" name="" placeholder="请输入" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                </div>
+                <HR style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="80%" color=#987cb9 SIZE=3>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">当前密码</label>
+                    <div class="layui-input-block" style="width: 400px;">
+                        <input type="password" name="" placeholder="请输入" autocomplete="off"
+                               class="layui-input" >
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label" >修改密码</label>
+                    <div class="layui-input-block" style="width: 400px;">
+                        <input type="password" name="" placeholder="请输入" autocomplete="off"
+                               class="layui-input" >
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">二次确认</label>
+                    <div class="layui-input-block" style="width: 400px;">
+                        <input type="password" name="" placeholder="请输入" autocomplete="off"
+                               class="layui-input" >
+                    </div>
+                </div>
+                <br> <br>
+                <div class="layui-form-item" style="margin: 0px 0px 0px 100px;">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit lay-filter="*">确认修改</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">返回首页</button>
+                    </div>
+                </div>
+                <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="layui-footer">
+    <!-- 底部固定区域 -->
+</div>
+</div>
+<script src="/layui/layui.js"></script>
+<script src="lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+<script>
+    //JavaScript代码区域
+    layui.use('element', function(){
+        var element = layui.element;
+
+    });
+</script>
+
+<script src="/layui/layui.js"></script>
+<script>
+    //Demo
+    layui.use('form', function() {
+        var form = layui.form;
+
+        //监听提交
+        form.on('submit(formDemo)', function(data) {
+            layer.msg(JSON.stringify(data.field));
+            return false;
+        });
+    });
+    //注意：导航 依赖 element 模块，否则无法进行功能性操作
+    layui.use('element', function() {
+        var element = layui.element;
+    });
+</script>
+<script>
+    layui.use('util', function() {
+        var util = layui.util;
+
+        //执行
+        util.fixbar({
+            bar1 : true,
+            bar2 : true,
+            click : function(type) {
+                console.log(type);
+                if (type === 'bar1') {
+                    alert('点击了bar1')
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>
